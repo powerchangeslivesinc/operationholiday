@@ -21,7 +21,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      <div className="p-6">
+      <div className="">
         <Routes>
           <Route path="/" element={<Home />} />
 
