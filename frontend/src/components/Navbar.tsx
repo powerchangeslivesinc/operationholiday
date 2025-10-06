@@ -1,141 +1,121 @@
 // src/components/Navbar.tsx
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function Navbar() {
-  const [open, setOpen] = useState<null | "programs" | "about" | "donate">(null);
+// Define the structure for each menu item
+type MenuItem = {
+  label: string;
+  path?: string;
+  children?: MenuItem[];
+};
+
+// Define all menu items with submenus and nested submenus
+const menuItems: MenuItem[] = [
+  { label: "Home", path: "/" },
+  {
+    label: "Programs",
+    children: [
+      {
+        label: "Operation Holiday at Home",
+        children: [
+          { label: "Applicants", path: "/programs/holidayathome/applicants" },
+          { label: "Donors", path: "/programs/holidayathome/donors" },
+          { label: "FAQs", path: "/programs/holidayathome/faqs" },
+        ],
+      },
+      {
+        label: "Santa’s Village",
+        children: [
+          { label: "Tickets", path: "/programs/santasvillage/tickets" },
+          { label: "Partner Registration", path: "/programs/santasvillage/partners" },
+          { label: "Vendor Registration", path: "/programs/santasvillage/vendors" },
+        ],
+      },
+      {
+        label: "Mrs. Claus",
+        children: [
+          { label: "Meet Mrs. Claus", path: "/programs/mrsclaus/meet" },
+          { label: "Gallery", path: "/programs/mrsclaus/gallery" },
+        ],
+      },
+    ],
+  },
+  { label: "Volunteer", path: "/volunteer" },
+  {
+    label: "About Us",
+    children: [
+      { label: "Contact", path: "/about/contact" },
+      { label: "Leadership", path: "/about/leadership" },
+    ],
+  },
+  {
+    label: "Donate",
+    children: [
+      { label: "Giving", path: "/donate/giving" },
+      { label: "Toys", path: "/donate/toys" },
+    ],
+  },
+];
+
+// Recursive component to render menu items and submenus
+interface NavItemProps {
+  item: MenuItem;
+}
+
+const NavItem: React.FC<NavItemProps> = ({ item }) => {
+  const [open, setOpen] = useState(false);
+  const hasChildren = item.children && item.children.length > 0;
 
   return (
-    <header className="relative z-50">
-      {/* Top header row laid out in 6 columns to mirror your image */}
-      <div className="bg-black text-white border-b border-gray-700">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-6 items-center gap-4 py-3">
-            {/* 1. HOME (col 1) */}
-            <div className="col-span-1">
-              <Link to="/" className="block text-sm font-bold tracking-wider">HOME</Link>
-            </div>
+    <div
+      className="relative group"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      {hasChildren ? (
+        <button
+          className="px-4 py-2 text-sm font-bold uppercase hover:text-gray-300"
+          onClick={() => setOpen(!open)}
+        >
+          {item.label} ▼
+        </button>
+      ) : (
+        <Link
+          to={item.path!}
+          className="px-4 py-2 text-sm font-bold uppercase hover:text-gray-300 block"
+        >
+          {item.label}
+        </Link>
+      )}
 
-            {/* 2. PROGRAMS (col 2) */}
-            <div className="col-span-1">
-              <button
-                onClick={() => setOpen(open === "programs" ? null : "programs")}
-                className="text-sm font-bold uppercase"
-              >
-                PROGRAMS
-              </button>
-            </div>
-
-            {/* 3. big center spacer (col 3) */}
-            <div className="col-span-2" />
-
-            {/* 4. VOLUNTEER (col 4) */}
-            <div className="col-span-1 text-center">
-              <Link to="/volunteer" className="text-sm font-bold uppercase">VOLUNTEER</Link>
-            </div>
-
-            {/* 5. ABOUT US (col 5) */}
-            <div className="col-span-1">
-              <button
-                onClick={() => setOpen(open === "about" ? null : "about")}
-                className="text-sm font-bold uppercase"
-              >
-                ABOUT US
-              </button>
-            </div>
-
-            {/* 6. DONATE (aligned visually to extreme right - we'll place link under same column area) */}
-            {/* Note: grid is 6 cols, donate link visually on right side. */}
-          </div>
+      {hasChildren && open && (
+        <div className="absolute left-0 top-full bg-gray-900 text-white min-w-[200px] rounded shadow-lg z-50">
+          {item.children!.map((child) => (
+            <NavItem key={child.label} item={child} />
+          ))}
         </div>
+      )}
+    </div>
+  );
+};
+
+// Main Navbar component
+export default function Navbar() {
+  return (
+    <header className="bg-black text-white">
+      <div className="container mx-auto flex items-center justify-between px-4 py-3">
+        {/* Left side - Logo / Name */}
+        <Link to="/" className="text-lg font-bold tracking-wider uppercase">
+          Operation Holiday
+        </Link>
+
+        {/* Right side - Menu items */}
+        <nav className="flex space-x-4">
+          {menuItems.map((item) => (
+            <NavItem key={item.label} item={item} />
+          ))}
+        </nav>
       </div>
-
-      {/* MEGA AREA: PROGRAMS - spans full width but content is arranged to match image columns */}
-      {open === "programs" && (
-        <div className="absolute left-0 right-0 top-full bg-gray-900 text-white border-t border-gray-700 shadow-lg">
-          <div className="container mx-auto px-4 py-6">
-            {/* Use grid with 6 columns so we can create the same column ordering */}
-            <div className="grid grid-cols-6 gap-6">
-              {/* Column 1 - leftmost (matches big empty space under HOME in image) */}
-              <div className="col-span-1" />
-
-              {/* Column 2 - Operation Holiday at Home (bold header) */}
-              <div className="col-span-1">
-                <div className="bg-black px-3 py-2 font-bold rounded text-white">Operation Holiday at Home</div>
-                <ul className="mt-4 space-y-2">
-                  <li><Link to="/programs/holidayathome/applicants" className="block px-1 py-1 hover:underline">Applicants</Link></li>
-                  <li><Link to="/programs/holidayathome/donors" className="block px-1 py-1 hover:underline">Donors (Adoptions)</Link></li>
-                  <li><Link to="/programs/holidayathome/faqs" className="block px-1 py-1 hover:underline">Frequently Asked Questions (FAQs)</Link></li>
-                </ul>
-              </div>
-
-              {/* Column 3 - Santa's Village column (middle area) */}
-              <div className="col-span-1">
-                <div className="bg-black px-3 py-2 font-bold rounded text-white">Santa’s Village</div>
-                <ul className="mt-4 space-y-2">
-                  <li><Link to="/programs/santasvillage/tickets" className="block px-1 py-1 hover:underline">Tickets</Link></li>
-                  <li><Link to="/programs/santasvillage/partner-registration" className="block px-1 py-1 hover:underline">Partner Registration</Link></li>
-                  <li><Link to="/programs/santasvillage/vendor-registration" className="block px-1 py-1 hover:underline">Vendor Registration</Link></li>
-                </ul>
-              </div>
-
-              {/* Column 4 - Mrs. Claus and related (small right-of-center) */}
-              <div className="col-span-1">
-                <div className="bg-black px-3 py-2 font-bold rounded text-white">Mrs. Claus</div>
-                <ul className="mt-4 space-y-2">
-                  <li><Link to="/programs/mrsclaus/meet" className="block px-1 py-1 hover:underline">Meet Mrs. Claus</Link></li>
-                  <li><Link to="/programs/mrsclaus/gallery" className="block px-1 py-1 hover:underline">Gallery</Link></li>
-                </ul>
-              </div>
-
-              {/* Column 5 - Volunteer registration area aligned under VOLUNTEER header */}
-              <div className="col-span-1">
-                <div className="bg-black px-3 py-2 font-bold rounded text-white">Volunteer</div>
-                <ul className="mt-4 space-y-2">
-                  <li><Link to="/volunteer" className="block px-1 py-1 hover:underline">Volunteer Registration</Link></li>
-                </ul>
-              </div>
-
-              {/* Column 6 - About & Donate area aligned under rightmost headers */}
-              <div className="col-span-1">
-                <div className="bg-black px-3 py-2 font-bold rounded text-white">About / Donate</div>
-                <ul className="mt-4 space-y-2">
-                  <li><Link to="/about/contact" className="block px-1 py-1 hover:underline">Contact Us</Link></li>
-                  <li><Link to="/about/leadership" className="block px-1 py-1 hover:underline">Our Leadership</Link></li>
-                  <li><Link to="/donate/giving" className="block px-1 py-1 hover:underline">Giving</Link></li>
-                  <li><Link to="/donate/toys" className="block px-1 py-1 hover:underline">Toys</Link></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ABOUT / DONATE small dropdowns (simple) */}
-      {open === "about" && (
-        <div className="absolute left-0 top-full right-0 bg-gray-900 border-t border-gray-700">
-          <div className="container mx-auto px-4 py-4">
-            <div className="flex gap-6">
-              <Link to="/about/contact" className="px-2 py-1 hover:underline">Contact</Link>
-              <Link to="/about/leadership" className="px-2 py-1 hover:underline">Leadership</Link>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {open === "donate" && (
-        <div className="absolute left-0 top-full right-0 bg-gray-900 border-t border-gray-700">
-          <div className="container mx-auto px-4 py-4">
-            <div className="flex gap-6">
-              <Link to="/donate/giving" className="px-2 py-1 hover:underline">Giving</Link>
-              <Link to="/donate/toys" className="px-2 py-1 hover:underline">Toys</Link>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* click-outside behavior: clicking anywhere in the document won't be handled here,
-          but you can add a global click listener if you want to close menus on outside click. */}
     </header>
   );
 }
