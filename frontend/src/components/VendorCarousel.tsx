@@ -76,8 +76,9 @@ export default function VendorCarousel() {
   const prevSlide = () => setCurrent((current - 1 + length) % length);
 
   return (
-    <div className="relative max-w-4xl mx-auto my-8">
-      <div className="overflow-hidden h-96 rounded-xl relative">
+    <div className="relative max-w-4/5 mx-auto my-8">
+      <div className="overflow-hidden h-150 rounded-xl relative">
+        
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -90,7 +91,7 @@ export default function VendorCarousel() {
               alt={slide.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 bg-black bg-opacity-50 text-white p-4 text-center rounded-t">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 bg-black/60 text-white p-4 text-center rounded-t">
               <h4 className="text-lg font-bold mb-2">{slide.title}</h4>
               <p className="text-sm">{slide.description}</p>
             </div>
@@ -101,13 +102,13 @@ export default function VendorCarousel() {
       {/* Navigation buttons */}
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-4 -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white px-3 py-1 rounded"
+        className="absolute top-1/2 left-4 -translate-y-1/2 bg-gray-800 bg-opacity-50 text-black px-3 py-1 rounded"
       >
         ‹
       </button>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-4 -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white px-3 py-1 rounded"
+        className="absolute top-1/2 right-4 -translate-y-1/2 bg-gray-800 bg-opacity-50 text-black px-3 py-1 rounded"
       >
         ›
       </button>
