@@ -12,7 +12,7 @@ export default function Applicants() {
             url('/trees-bg-header-applicants.webp')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            height: "20vh",
+            height: "15vh",
           }}
         >
           <h1 className="text-3xl md:text-4xl font-bold text-center">
