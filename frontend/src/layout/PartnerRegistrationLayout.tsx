@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // include Bootstrap
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 
 
 const PartnerRegistrationLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
