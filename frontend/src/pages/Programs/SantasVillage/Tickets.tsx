@@ -1,19 +1,124 @@
 import React from "react";
-//import AppLayout from "../layout/AppLayout"; // adjust the import path based on your project structure
+import AppLayout from "../../../layout/AppLayout";
+import familyImage from "../../../assets/images/tickets/family.png";
+//import christmasEndImage from "../../../assets/images/tickets/christmas-end.jpg";
+import christmasImage from "../../../assets/images/tickets/christmas.png";
+
 
 const Tickets: React.FC = () => {
   return (
-      <div className="p-6">
-        <h1 className="text-3xl font-bold mb-4">Tickets</h1>
-        <p className="text-gray-700 leading-relaxed">
-          The Ticket Page lists all available service and resource “tickets” that organizations can provide at Santa’s Village.
-          Each ticket represents a type of support (e.g., healthcare, childcare, career training, financial planning, food services)
-          that attendees can access during the event. Partners and vendors may browse the full list and select the ticket categories
-          they will cover. When you select a ticket type, you are pledging to provide that service or resource during Santa’s Village.
-          This ensures a diverse, well-organized offering of assistance for families who attend. Please choose carefully, as tickets
-          help us coordinate booth assignments and service availability.
-        </p>
+    <AppLayout>
+      {/* Inline Page Styles */}
+      
+      <style>{`
+        body {
+          text-align: center;
+        }
+        h2 {
+          color: rgb(213, 19, 19);
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: bold;
+        }
+        #red {
+          color: rgb(213, 19, 19);
+          font-weight: bold;
+        }
+        #green {
+          color: rgb(14, 90, 14);
+          font-weight: bold;
+        }
+        p {
+          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        img {
+          display: block;
+          margin: 0 auto;
+          height: auto;
+        }
+        #end-img {
+          width: 500px;
+        }
+      `}</style>
+
+      {/* Page Content */}
+       <div
+        className=""
+        style={{
+          background: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.75)), url('/snowy-bg-applicants.webp')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></div>
+
+      <div className="min-h-screen font-sans">
+        <div className="container mx-auto px-6 py-12">
+          <img
+            src={familyImage}
+            alt="Family Christmas"
+            className="max-w-xs md:max-w-md lg:max-w-lg h-auto"
+          />
+          <br />
+          <h2 className="text-4xl">🎟️ Tickets – Christmas Extravaganza</h2>
+          <br />
+          <p>
+            Operation Holiday’s <b id="red">Christmas Extravaganza</b> is the
+            highlight of the season — a day filled with joy, music, free
+            services, food, entertainment, and the distribution of thousands of
+            toys. Admission is completely free, but tickets are required for
+            entry to help us safely plan for all guests.
+            <br />
+            <br />
+            <b id="green">✨ Important Dates</b>
+            <br />
+            <br />
+            <b>New OperationHoliday.net site goes live:</b> September 30, 2025
+            <br />
+            <b>Adopt-a-Family (OH at Home) applications open:</b> September 30,
+            2025
+            <br />
+            <b>Christmas Extravaganza tickets available:</b> December 2025
+            (official release date will be announced)
+            <br />
+            <br />
+            👉 Please note: <b id="red">This is not a ticket form.</b> Tickets
+            will only be available through the{" "}
+            <b id="green">OperationHoliday.net</b> website when registration
+            opens in December 2025.
+            <br />
+            <br />
+            Check back here for updates and links to the official ticket
+            registration page.
+          </p>
+
+          <div className="mt-8">
+            <img
+              src={christmasImage}
+              alt="Merry Christmas!"
+              id="end-img"
+              className="max-w-xs md:max-w-md lg:max-w-lg h-auto"
+            />
+          </div>
+        </div>
       </div>
+
+      {/* Decorative Section */}
+      <section
+        className="section-1756007495978"
+        style={{
+          backgroundColor: "rgb(65,77,87)",
+          backgroundImage:
+            "url('https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-ipage-v1-0-5%2F505%2F516505%2Ft57cWiBx%2F6218833a9e5546dcac80ad4a4038aa5d&methods=resize%2C2000%2C5000')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          padding: "2rem 0",
+        }}
+      >
+        <header className="text-center text-white py-6">
+          <hr className="kv-ee-underline" />
+        </header>
+      </section>
+    </AppLayout>
   );
 };
 
