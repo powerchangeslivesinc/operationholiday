@@ -37,7 +37,7 @@ const Tickets: React.FC = () => {
           height: auto;
         }
         #end-img {
-          width: 500px;
+          width: 350px;
         }
       `}</style>
 
@@ -91,33 +91,24 @@ const Tickets: React.FC = () => {
             registration page.
           </p>
 
-          <div className="mt-8">
+          <div className="">
             <img
               src={christmasImage}
               alt="Merry Christmas!"
               id="end-img"
               className="max-w-xs md:max-w-md lg:max-w-lg h-auto"
+              style={{
+                position: "relative",
+                top: "-4rem",
+              }}
             />
           </div>
         </div>
       </div>
 
       {/* Decorative Section */}
-      <section
-        className="section-1756007495978"
-        style={{
-          backgroundColor: "rgb(65,77,87)",
-          backgroundImage:
-            "url('https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-ipage-v1-0-5%2F505%2F516505%2Ft57cWiBx%2F6218833a9e5546dcac80ad4a4038aa5d&methods=resize%2C2000%2C5000')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          padding: "2rem 0",
-        }}
-      >
-        <header className="text-center text-white py-6">
-          <hr className="kv-ee-underline" />
-        </header>
-      </section>
+   
+       
     </AppLayout>
   );
 };

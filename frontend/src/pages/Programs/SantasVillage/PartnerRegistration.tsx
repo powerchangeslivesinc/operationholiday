@@ -102,7 +102,7 @@ const PartnerRegistration: React.FC = () => {
           <div className="mx-auto w-3/4 py-6 px-4">
             {/* Your original content preserved exactly */}
             <div
-              className="flex items-center justify-center text-white mb-8"
+              className="flex items-center justify-center text-blue-900 mb-8"
               
             >
               <h1 className="text-3xl font-bold text-center">

@@ -17,6 +17,7 @@ import Tickets from "./pages/Programs/SantasVillage/Tickets";
 import VendorRegistration from "./pages/Programs/SantasVillage/VendorRegistration";
 import Volunteer from "./pages/Volunteer";
 import FamilyDetail from "./pages/Programs/OperationHolidayAtHome/FamilyDetail";
+import PartnerServicesTable from "./pages/Programs/SantasVillage/PartnersServicesTable";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
 
           {/* Programs - Santa’s Village */}
           <Route path="/programs/santasvillage/partners" element={<PartnerRegistration />} />
+           <Route path="/programs/santasvillage/partners-services" element={<PartnerServicesTable />} />
           <Route path="/programs/santasvillage/tickets" element={<Tickets />} />
           <Route path="/programs/santasvillage/vendors" element={<VendorRegistration />} />
 
