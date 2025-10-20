@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import eventImg from "../assets/images/events.png";
+import eventImg from "../assets/images/box.png"
 
 interface ProductCardProps {
   productId: string;
@@ -10,8 +10,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({
   productId,
-  title,
-  imageUrl = "/assets/images/events.png", // default image path
+  title, // default image path
 }) => {
   const navigate = useNavigate();
 
@@ -27,13 +26,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <img
           src={eventImg}
           alt={`${title} image`}
-          className="mx-auto mb-4 object-contain"
-          style={{ maxWidth: "75px", height: "140px" }}
+          className="mx-auto mb-4 object-contain max-w-2/6"
         />
 
         {/* Product Info */}
         <div className="flex-grow">
-          <h3 className="text-lg font-medium text-gray-800">{productId}</h3>
           <p className="text-gray-700 mt-1">{title}</p>
         </div>
 
