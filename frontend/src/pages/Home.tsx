@@ -219,7 +219,7 @@ export default function Home() {
 
           <hr className="mx-auto h-1 w-1/3 border-0 bg-gradient-to-r from-white via-green-900 to-white" />
 
-          <section className="my-25">
+          <section className="mt-25 pb-25">
             <h1 className="mb-2 text-3xl font-semibold pb-5 text-center">
               Events
             </h1>
