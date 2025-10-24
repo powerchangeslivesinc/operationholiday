@@ -162,7 +162,7 @@ const NavItem: React.FC<NavItemProps> = ({ item }) => {
 // Main Navbar component
 export default function Navbar() {
   return (
-    <header className="bg-black text-white">
+    <header className="bg-red-900 text-white">
       <div className="mx-auto flex items-center justify-between px-6 py-3">
         {/* Left side - Logo / Name */}
         <Link
