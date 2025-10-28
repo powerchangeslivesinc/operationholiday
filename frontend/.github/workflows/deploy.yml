@@ -1,9 +1,9 @@
-name: Deploy React Frontend to GitHub Pages
+name: Deploy React App to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # or your main branch
+      - main  # Runs every time you push to main
 
 jobs:
   build-and-deploy:
@@ -11,23 +11,23 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
       - name: Install dependencies
         working-directory: ./frontend
-        run: npm install
+        run: npm ci
 
-      - name: Build frontend
+      - name: Build project
         working-directory: ./frontend
         run: npm run build
 
-      - name: Deploy frontend to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v6
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/build
+          publish_dir: ./frontend/dist  # Adjust if your build output is 'build' instead of 'dist'
