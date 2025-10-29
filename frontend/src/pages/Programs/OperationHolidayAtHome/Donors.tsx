@@ -1,8 +1,6 @@
-import React from "react";
 import AdoptionProcess from "../../../components/AdoptionProcess";
 import ProductCard from "../../../components/ProductCard";
 import Accordion from "../../../components/Accordion";
-import FamilyDetail from "./FamilyDetail";
 import FamilyCard from "../../../components/FamilyCard";
 
 export default function Donors() {
