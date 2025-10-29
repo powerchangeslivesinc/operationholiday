@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import bgImage from "../../../assets/images/partner-registration/christmas-background.jpg";
+import headerImg from "../../../assets/images/partner-registration/christmas-background.jpg";
+import bgImg from "../../../assets/images/applicant-imgs/snowy-bg-applicants.webp"
 
 const PartnerRegistration: React.FC = () => {
   const [validated, setValidated] = useState(false);
@@ -73,7 +74,7 @@ const PartnerRegistration: React.FC = () => {
           className="text-white flex items-center justify-center"
           style={{
             background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-            url(${bgImage})`,
+            url(${headerImg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             height: "15vh",
@@ -93,7 +94,7 @@ const PartnerRegistration: React.FC = () => {
             rgba(255, 255, 255, 0.95),
             rgba(255, 255, 255, 0.8),
             rgba(255, 255, 255, 0.75)
-          ), url('/snowy-bg-applicants.webp')`,
+          ), url(${bgImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

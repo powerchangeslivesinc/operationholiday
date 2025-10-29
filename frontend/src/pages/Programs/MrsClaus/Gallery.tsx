@@ -2,6 +2,7 @@ import art from "/vendor-imgs/art.webp";
 import dj from "/vendor-imgs/dj.webp";
 import choir from "/vendor-imgs/choir.webp";
 import communications from "/vendor-imgs/communications.webp";
+import headerImg from "/vendor-imgs/vendor-reg.webp";
 import Carousel from "../../../components/Carousel";
 
 const photos = [
@@ -34,10 +35,10 @@ export default function Gallery() {
           className="text-white flex items-center justify-center"
           style={{
             background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-            url('/vendor-imgs/vendor-reg.webp')`,
+            url(${headerImg})`,
             backgroundSize: "cover",
             backgroundPosition: "top",
-            height: "15vh",
+            height: "20vh",
           }}
         >
           <h1 className="text-3xl md:text-4xl font-bold text-center">

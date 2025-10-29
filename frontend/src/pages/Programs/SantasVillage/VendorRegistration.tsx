@@ -9,6 +9,7 @@ import food from "/vendor-imgs/food_service.webp";
 import makeup from "/vendor-imgs/makeup_artist.webp";
 import massage from "/vendor-imgs/massage.webp";
 import venue from "/vendor-imgs/venue.webp";
+import headerImg from "/vendor-imgs/vendor-reg.webp"
 
 const slides = [
     {
@@ -75,10 +76,10 @@ export default function VendorRegistration() {
           className="text-white flex items-center justify-center"
           style={{
             background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-            url('/vendor-imgs/vendor-reg.webp')`,
+            url(${headerImg})`,
             backgroundSize: "cover",
             backgroundPosition: "top",
-            height: "15vh",
+            height: "20vh",
           }}
         >
           <h1 className="text-3xl md:text-4xl font-bold text-center">
