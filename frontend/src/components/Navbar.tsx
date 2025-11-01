@@ -90,7 +90,6 @@ const Submenu: React.FC<{ items: MenuItem[] }> = ({ items }) => {
       >
         {items.map((item) =>
           item.children && item.children.length > 0 ? (
-
             <button
               key={item.label}
               onMouseEnter={() => setActive(item.label)}
@@ -101,7 +100,6 @@ const Submenu: React.FC<{ items: MenuItem[] }> = ({ items }) => {
               {item.label}
             </button>
           ) : (
-
             <Link
               key={item.label}
               to={item.path!}
@@ -180,13 +178,13 @@ export default function Navbar() {
         </nav>
 
         <div>
-          <button className="py-1.5 px-3 mr-5 bg-red-700 hover:bg-red-800 rounded-md font-bold">
-            Sign up
-          </button>
-
+          <Link
+          to="/login"
+          className="!text-white">
           <button className="py-1.5 px-3 bg-green-700 hover:bg-green-800 rounded-md font-bold">
             Log in
           </button>
+          </Link>
         </div>
       </div>
     </header>

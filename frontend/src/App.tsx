@@ -18,6 +18,8 @@ import VendorRegistration from "./pages/Programs/SantasVillage/VendorRegistratio
 import Volunteer from "./pages/Volunteer";
 import FamilyDetail from "./pages/Programs/OperationHolidayAtHome/FamilyDetail";
 import PartnerServicesTable from "./pages/Programs/SantasVillage/PartnersServicesTable";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -53,6 +55,10 @@ function App() {
 
           {/* Volunteer */}
           <Route path="/volunteer" element={<Volunteer />} />
+
+          {/*Login*/}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </HashRouter>
