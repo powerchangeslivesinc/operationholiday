@@ -17,6 +17,7 @@ import Tickets from "./pages/Programs/SantasVillage/Tickets";
 import VendorRegistration from "./pages/Programs/SantasVillage/VendorRegistration";
 import Volunteer from "./pages/Volunteer";
 import FamilyDetail from "./pages/Programs/OperationHolidayAtHome/FamilyDetail";
+import ApplicantsForm from "./pages/Programs/OperationHolidayAtHome/ApplicantsForm";
 
 function App() {
   return (
@@ -40,8 +41,11 @@ function App() {
 
           {/* Programs - Operation Holiday At Home */}
           <Route path="/programs/holidayathome/applicants" element={<Applicants />} />
-          <Route path="/programs/holidayathome/donors" element={<Donors />} />
+          {/*route for applicants form*/}
+           <Route path="/programs/holiday/application" element={<ApplicantsForm />} />
 
+          <Route path="/programs/holidayathome/donors" element={<Donors />} />
+         
           {/*routes for family details for donors page */}
           <Route path="/programs/holidayathome/familydetail" element={<FamilyDetail />} />
       
