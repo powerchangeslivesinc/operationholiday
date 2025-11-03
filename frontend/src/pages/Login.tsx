@@ -1,81 +1,80 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
+import bgImg from "../assets/images/applicant-imgs/snowy-bg-applicants.webp"
 
 export default function Login() {
+  const { user, login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  // ✅ Automatically redirect once user is set
+  useEffect(() => {
+    if (user) {
+      navigate("/"); // redirect after context updates
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
-      const res = await fetch("http://localhost:3001/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setMessage(data.message || "Login failed");
-        return;
+      await login(email, password);
+      navigate("/");
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message || "Login failed");
+      } else {
+        setError("Unexpected Error");
       }
-
-      setMessage("Login successful!");
-      console.log("User registered:", data);
-    } catch (error) {
-      console.error(error);
-      setMessage("Server error");
     }
   };
 
   return (
-    <div style={{ maxWidth: 320, margin: "60px auto", textAlign: "center" }}>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            style={{ width: "100%", margin: "8px 0", padding: "8px" }}
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            style={{ width: "100%", margin: "8px 0", padding: "8px" }}
-          />
-        </div>
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "8px",
-            backgroundColor: "#007bff",
-            color: "white",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </button>
-      </form>
-      {message && <p style={{ marginTop: "12px" }}>{message}</p>}
+    <>
+      <div
+        className="flex items-center justify-center h-[93vh]"
+        style={{
+          background: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.75)), url(${bgImg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="mx-auto w-2/3 max-w-3xl px-6 py-10 bg-white shadow-2xl rounded-lg text-center">
+          <form onSubmit={handleSubmit} className="p-6 mx-auto">
+            <h1 className="pb-5 text-3xl font-bold">Login</h1>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="border py-2 pl-2 block my-5 rounded-sm w-full max-w-lg mx-auto"
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="border py-2 pl-2 block my-5 rounded-sm w-full max-w-lg mx-auto"
+            />
+            {error && <p className="text-red-500">{error}</p>}
+            <button
+              type="submit"
+              className="bg-green-700 text-white px-4 py-2 rounded-3xl w-1/2 cursor-pointer hover:bg-green-800 transition duration-75"
+            >
+              Login
+            </button>
 
-      <div>
-        <Link to="/register">
-        <button>Register</button>
-        </Link>
+            <div className="flex pt-6 justify-center">
+              <p className="pr-1 text-gray-500">First Time?</p>
+              <Link to="/register">
+                <button className="cursor-pointer">Register</button>
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

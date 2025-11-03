@@ -1,6 +1,7 @@
-// src/components/Navbar.tsx
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
+import userImg from "../assets/user.svg"
 
 // Define the structure for each menu item
 type MenuItem = {
@@ -159,6 +160,9 @@ const NavItem: React.FC<NavItemProps> = ({ item }) => {
 
 // Main Navbar component
 export default function Navbar() {
+  const { user, logout } = useContext(AuthContext);
+  
+
   return (
     <header className="bg-red-950 text-white">
       <div className="mx-auto flex items-center justify-between px-6 py-3">
@@ -175,17 +179,28 @@ export default function Navbar() {
           {menuItems.map((item) => (
             <NavItem key={item.label} item={item} />
           ))}
+          {user ? (
+            <div className="flex items-center space-x-3">
+              <img
+                src={user.avatarUrl || userImg}
+                alt={user.name}
+                className="w-8 h-8 rounded-full border-2 border-white"
+              />
+              <button
+                onClick={logout}
+                className="bg-gray-700 px-3 py-1 rounded"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link to="/login">
+              <button className="bg-green-700 hover:bg-green-800 !text-white rounded-md font-bold py-1.5 px-3">
+                Log in
+              </button>
+            </Link>
+          )}
         </nav>
-
-        <div>
-          <Link
-          to="/login"
-          className="!text-white">
-          <button className="py-1.5 px-3 bg-green-700 hover:bg-green-800 rounded-md font-bold">
-            Log in
-          </button>
-          </Link>
-        </div>
       </div>
     </header>
   );
