@@ -1,6 +1,7 @@
-
 import ProductCard from "../components/ProductCard";
 import { Link } from "react-router-dom";
+import headerImg from "../assets/images/home-imgs/header.png"
+import bgImg from "../assets/images/home-imgs/bg.png"
 
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
         className=""
         style={{
           background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-            url('/home-imgs/header.png')`,
+            url(${headerImg})`,
           backgroundPosition: "center",
         }}
       >
@@ -51,7 +52,7 @@ export default function Home() {
         className=""
         style={{
           background: `linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
-            url('/home-imgs/bg.png')`,
+            url(${bgImg})`,
           backgroundPosition: "center",
         }}
       >

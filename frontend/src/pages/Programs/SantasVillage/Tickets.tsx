@@ -3,7 +3,7 @@ import AppLayout from "../../../layout/AppLayout";
 import familyImage from "../../../assets/images/tickets/family.png";
 //import christmasEndImage from "../../../assets/images/tickets/christmas-end.jpg";
 import christmasImage from "../../../assets/images/tickets/christmas.png";
-
+import bgImg from "../../../assets/images/applicant-imgs/snowy-bg-applicants.webp"
 
 const Tickets: React.FC = () => {
   return (
@@ -12,7 +12,6 @@ const Tickets: React.FC = () => {
       
       <style>{`
         body {
-          text-align: center;
         }
         h2 {
           color: rgb(213, 19, 19);
@@ -45,14 +44,14 @@ const Tickets: React.FC = () => {
        <div
         className=""
         style={{
-          background: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.75)), url('/snowy-bg-applicants.webp')`,
+          background: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.75)), url(${bgImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       ></div>
 
       <div className="min-h-screen font-sans">
-        <div className="container mx-auto px-6 py-12">
+        <div className="container mx-auto px-6 py-12 text-center">
           <img
             src={familyImage}
             alt="Family Christmas"
