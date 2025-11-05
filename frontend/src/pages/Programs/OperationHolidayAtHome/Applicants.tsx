@@ -150,7 +150,7 @@ export default function Applicants() {
               style={{ height: "3.5em" }}
             >
               <Link
-                to="/programs/holiday/application"
+                to="/programs/holidayathome/application"
                 className="w-1/4 bg-red-600 hover:bg-red-700 !text-white text-lg font-semibold pt-3 px-4 rounded-lg text-center transition"
               >
                 Apply
