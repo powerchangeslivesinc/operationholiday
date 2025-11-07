@@ -1,5 +1,3 @@
-//describe what data each applicant has 
-//import mongoose, schmea, document 
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface Applicant {
