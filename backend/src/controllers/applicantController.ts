@@ -64,4 +64,29 @@ export const createApplicant = async (req: Request, res: Response) => {
   }
 };
 
+//get all the applicants 
+export const getApplicants = async (req: Request, res: Response) => {
+  try {
+    const applicants = await Applicant.find();
+    res.status(200).json(applicants);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+//get applicant by id
+export const getApplicantById = async (req: Request, res: Response) => {
+  try {
+    const applicant = await Applicant.findById(req.params.id);
+    if (!applicant) {
+      return res.status(404).json({ error: "Applicant not found" });
+    }
+    res.status(200).json(applicant);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+
 

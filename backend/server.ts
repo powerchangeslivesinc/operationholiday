@@ -6,6 +6,7 @@ import fileUpload from "express-fileupload";
 
 //import the create applicant controller 
 import { createApplicant } from './src/controllers/applicantController';
+import { Applicant } from './src/models/applicant';
 
 dotenv.config();
 const app = express();
@@ -54,6 +55,17 @@ app.post('/api/messages', async (req: Request, res: Response) => {
 
 //applicant route to create a new applicant
 app.post("/api/applicants", createApplicant);
+
+//applicant route to get all applicants
+app.get("/api/applicants", async (req: Request, res: Response) => {
+  try {
+    const applicants = await Applicant.find();
+    res.status(200).json(applicants);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
 app.listen(PORT, () => console.log(`🚀 Backend running on http://localhost:${PORT}`));
 
