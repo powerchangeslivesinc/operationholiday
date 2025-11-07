@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 // Pages
@@ -17,11 +17,16 @@ import Tickets from "./pages/Programs/SantasVillage/Tickets";
 import VendorRegistration from "./pages/Programs/SantasVillage/VendorRegistration";
 import Volunteer from "./pages/Volunteer";
 import FamilyDetail from "./pages/Programs/OperationHolidayAtHome/FamilyDetail";
+import PartnerServicesTable from "./pages/Programs/SantasVillage/PartnersServicesTable";
+import Application from "./pages/Programs/OperationHolidayAtHome/Application";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import ApplicantsForm from "./pages/Programs/OperationHolidayAtHome/ApplicantsForm";
 
 function App() {
   return (
-    <div>
+    <HashRouter>
       <Navbar />
       <div className="">
         <Routes>
@@ -48,20 +53,25 @@ function App() {
          
           {/*routes for family details for donors page */}
           <Route path="/programs/holidayathome/familydetail" element={<FamilyDetail />} />
-      
           <Route path="/programs/holidayathome/faqs" element={<FAQs />} />
 
+          <Route path="/programs/holidayathome/application" element={<Application />} />
 
           {/* Programs - Santa’s Village */}
           <Route path="/programs/santasvillage/partners" element={<PartnerRegistration />} />
+          <Route path="/programs/santasvillage/partners-services" element={<PartnerServicesTable />} />
           <Route path="/programs/santasvillage/tickets" element={<Tickets />} />
           <Route path="/programs/santasvillage/vendors" element={<VendorRegistration />} />
 
           {/* Volunteer */}
           <Route path="/volunteer" element={<Volunteer />} />
+
+          {/*Login*/}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
-    </div>
+    </HashRouter>
   );
 }
 

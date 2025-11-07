@@ -1,39 +1,10 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import { Link } from "react-router-dom";
+import headerImg from "../assets/images/home-imgs/header.png"
+import bgImg from "../assets/images/home-imgs/bg.png"
 
-interface Message {
-  _id: string;
-  text: string;
-}
 
 export default function Home() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState<string>("");
-
-  // Fetch messages from backend
-  useEffect(() => {
-    axios
-      .get<Message[]>("http://localhost:5000/api/messages")
-      .then((res) => setMessages(res.data))
-      .catch((err) => console.error(err));
-  }, []);
-
-  // Send new message
-  const sendMessage = async () => {
-    if (!input.trim()) return;
-    try {
-      const res = await axios.post<Message>(
-        "http://localhost:5000/api/messages",
-        { text: input }
-      );
-      setMessages([...messages, res.data]);
-      setInput("");
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   return (
     <>
@@ -41,7 +12,7 @@ export default function Home() {
         className=""
         style={{
           background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-            url('/home-imgs/header.png')`,
+            url(${headerImg})`,
           backgroundPosition: "center",
         }}
       >
@@ -81,7 +52,7 @@ export default function Home() {
         className=""
         style={{
           background: `linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
-            url('/home-imgs/bg.png')`,
+            url(${bgImg})`,
           backgroundPosition: "center",
         }}
       >
@@ -249,7 +220,7 @@ export default function Home() {
 
           <hr className="mx-auto h-1 w-1/3 border-0 bg-gradient-to-r from-white via-green-900 to-white" />
 
-          <section className="my-25">
+          <section className="mt-25 pb-25">
             <h1 className="mb-2 text-3xl font-semibold pb-5 text-center">
               Events
             </h1>
@@ -259,27 +230,7 @@ export default function Home() {
             </div>
           </section>
 
-          <div style={{ padding: "20px" }}>
-            <input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type a message"
-              className="border p-2 mr-2"
-            />
-            <button
-              onClick={sendMessage}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-            >
-              Send
-            </button>
-            <ul className="mt-4">
-              {messages.map((m) => (
-                <li key={m._id} className="border-b py-1">
-                  {m.text}
-                </li>
-              ))}
-            </ul>
-          </div>
+          
         </div>
       </div>
     </>

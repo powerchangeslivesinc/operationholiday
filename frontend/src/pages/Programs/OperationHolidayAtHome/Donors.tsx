@@ -1,9 +1,8 @@
-import React from "react";
 import AdoptionProcess from "../../../components/AdoptionProcess";
 import ProductCard from "../../../components/ProductCard";
 import Accordion from "../../../components/Accordion";
-import FamilyDetail from "./FamilyDetail";
 import FamilyCard from "../../../components/FamilyCard";
+import headerImg from "../../../assets/images/applicant-imgs/trees-bg-header-applicants.webp"
 
 export default function Donors() {
   // Example placeholder data
@@ -54,7 +53,7 @@ export default function Donors() {
           className="text-white flex items-center justify-center"
           style={{
             background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url('/trees-bg-header-applicants.webp')`,
+              url(${headerImg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             height: "20vh",

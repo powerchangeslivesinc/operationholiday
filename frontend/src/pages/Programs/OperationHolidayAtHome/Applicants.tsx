@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import headerImg from "../../../assets/images/applicant-imgs/trees-bg-header-applicants.webp"
+import bgImg from "../../../assets/images/applicant-imgs/snowy-bg-applicants.webp"
 
 export default function Applicants() {
   return (
@@ -9,7 +11,7 @@ export default function Applicants() {
           className="text-white flex items-center justify-center"
           style={{
             background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-            url('/trees-bg-header-applicants.webp')`,
+            url(${headerImg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             height: "15vh",
@@ -25,7 +27,7 @@ export default function Applicants() {
       <div
         className=""
         style={{
-          background: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.75)), url('/snowy-bg-applicants.webp')`,
+          background: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.75)), url(${bgImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -148,7 +150,7 @@ export default function Applicants() {
               style={{ height: "3.5em" }}
             >
               <Link
-                to="/programs/holiday/application"
+                to="/programs/holidayathome/application"
                 className="w-1/4 bg-red-600 hover:bg-red-700 !text-white text-lg font-semibold pt-3 px-4 rounded-lg text-center transition"
               >
                 Apply

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import fileUpload from "express-fileupload";
-import Applicant from "../models/applicant"; 
+import { Applicant } from "../models/applicant"; 
 
 export const createApplicant = async (req: Request, res: Response) => {
   try {

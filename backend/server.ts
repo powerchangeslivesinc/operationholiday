@@ -56,3 +56,4 @@ app.post('/api/messages', async (req: Request, res: Response) => {
 app.post("/api/applicants", createApplicant);
 
 app.listen(PORT, () => console.log(`🚀 Backend running on http://localhost:${PORT}`));
+
