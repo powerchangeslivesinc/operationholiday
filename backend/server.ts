@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import fileUpload from "express-fileupload";
 
 //import the create applicant controller 
-import { createApplicant } from './src/controllers/applicantController';
+import { createApplicant, getApplicants, getApplicantById } from './src/controllers/applicantController';
 import { Applicant } from './src/models/applicant';
 
 dotenv.config();
@@ -61,6 +61,20 @@ app.get("/api/applicants", async (req: Request, res: Response) => {
   try {
     const applicants = await Applicant.find();
     res.status(200).json(applicants);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+//applicant route to get all applicants by id 
+app.get("/api/applicants/:id", async (req: Request, res: Response) => {
+  try {
+    const applicant = await Applicant.findById(req.params.id);
+    if (!applicant) {
+      return res.status(404).json({ error: "Applicant not found" });
+    }
+    res.status(200).json(applicant);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server error" });

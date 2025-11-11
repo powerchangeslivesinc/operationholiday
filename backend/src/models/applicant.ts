@@ -24,9 +24,7 @@ export interface IApplicant extends Document {
   photo_id?: string;
   public_assistance?: string;
   submit_timestamp: Date;
-
-  //new field: save whether they're adopted or not
-    adopted: boolean;
+  adoption_status: "up_for_adoption" | "adopted";
 }
 
 const ApplicantSchema = new Schema<IApplicant>({
@@ -55,7 +53,11 @@ const ApplicantSchema = new Schema<IApplicant>({
   submit_timestamp: { type: Date, default: Date.now },
 
   //new field: save whether they're adopted or not 
-  adopted: { type: Boolean, default: false },
+  adoption_status: {
+    type: String,
+    enum: ["up_for_adoption", "adopted"],
+    default: "up_for_adoption",
+  },
 });
 
 export const Applicant = mongoose.model<IApplicant>("Applicant", ApplicantSchema);

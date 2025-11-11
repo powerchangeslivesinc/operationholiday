@@ -25,6 +25,7 @@ export const createApplicant = async (req: Request, res: Response) => {
       future_prog_interest,
       referral_source,
       comments,
+      adoption_status,
     } = req.body;
 
     const photoId = req.files?.photo_id as fileUpload.UploadedFile;
@@ -54,6 +55,8 @@ export const createApplicant = async (req: Request, res: Response) => {
       comments,
       photo_id: photoId?.name || null,
       public_assistance: publicAssistance?.name || null,
+
+      adoption_status: adoption_status || "up_for_adoption",
     });
 
     await applicant.save();
