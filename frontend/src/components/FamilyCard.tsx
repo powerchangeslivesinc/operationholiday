@@ -3,65 +3,61 @@ import { useNavigate } from "react-router-dom";
 import boxImg from "../assets/images/box.png";
 
 interface FamilyCardProps {
-  familyId: string;
-  background: string;
-  adopted?: boolean;
+  applicant: {
+    _id: string;
+    name: string;
+    email: string;
+    family: {
+      title: string;
+      background: string;
+      adopted?: boolean;
+      location?: string;
+    };
+  };
 }
 
-const FamilyCard: React.FC<FamilyCardProps> = ({
-  familyId,
-  background,
-  adopted = false,
-}) => {
+const FamilyCard: React.FC<FamilyCardProps> = ({ applicant }) => {
   const navigate = useNavigate();
 
   const handleViewDetails = () => {
-    // For now, navigate to a static FamilyDetail placeholder page
-    // Later, you can append the ID like `/programs/holidayathome/familydetail/${familyId}`
+    // later: navigate(`/programs/holidayathome/familydetail/${applicant._id}`)
     navigate("/programs/holidayathome/familydetail");
   };
 
-  return (
-    <div className="col d-flex">
-      <div className="card text-center position-relative w-100 d-flex flex-column shadow-sm hover:shadow-md transition-all duration-200">
-        {/* Adopted Badge */}
-        {adopted && (
-          <span className="fs-6 badge bg-secondary position-absolute top-0 start-0 m-2">
-            Adopted
-          </span>
-        )}
+  const { family } = applicant;
 
-        {/* Family Image */}
+  return (
+    <div className="card text-center w-100 d-flex flex-column">
+      <div className="card text-center shadow-md bg-white rounded-lg flex flex-col h-full p-4 transition hover:shadow-lg hover:-translate-y-1">
+        <h4 className="font-semibold text-lg mb-2">{family.title}</h4>
         <img
           src={boxImg}
           alt="Box"
-          className="img-fluid mx-auto mb-3"
-          style={{ maxWidth: "100px", height: "auto" }}
+          className="mx-auto mb-4 object-contain max-w-2/6"
         />
 
-        {/* Card Body */}
-        <div className="card-body d-flex flex-column flex-grow-1">
-          <h3 className="fw-normal text-dark">{familyId}</h3>
-          <p className="text-dark flex-grow-1">{background}</p>
+        <div className="flex-grow text-left">
+          <p className="text-gray-700 text-sm line-clamp-2 text-center">
+            {family.background}
+          </p>
         </div>
 
-        {/* Footer Button */}
-        <div className="card-footer bg-transparent border-0 mt-auto">
+        <div className="mt-4">
           <button
             onClick={handleViewDetails}
             className={`fw-semibold px-4 py-2 transition-all duration-150 ${
-              adopted
+              family.adopted
                 ? "bg-gray-400 cursor-not-allowed text-white"
-                : "bg-green-600 hover:bg-green-700 text-white"
+                : "bg-green-600 hover:bg-green-700 text-white cursor-pointer"
             }`}
-            disabled={adopted}
+            disabled={family.adopted}
             style={{
               borderRadius: "6px",
               fontSize: "0.95rem",
               boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
             }}
           >
-            {adopted ? "Already Adopted" : "View Details"}
+            {family.adopted ? "Already Adopted" : "View Details"}
           </button>
         </div>
       </div>
