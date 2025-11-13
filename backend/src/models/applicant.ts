@@ -61,3 +61,4 @@ const ApplicantSchema = new Schema<IApplicant>({
 });
 
 export const Applicant = mongoose.model<IApplicant>("Applicant", ApplicantSchema);
+
