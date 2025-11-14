@@ -6,7 +6,7 @@ import fileUpload from "express-fileupload";
 
 //import the create applicant controller 
 import { createApplicant, getApplicants, getApplicantById } from './src/controllers/applicantController';
-import { Applicant } from './src/models/applicant';
+import { Applicant } from './src/models/Applicant';
 
 dotenv.config();
 const app = express();

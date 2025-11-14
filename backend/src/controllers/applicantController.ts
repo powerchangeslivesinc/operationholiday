@@ -1,95 +1,70 @@
 import { Request, Response } from "express";
-import fileUpload from "express-fileupload";
-import { Applicant } from "../models/applicant"; 
+import { Applicant } from "../models/Applicant";
+import { Family } from "../models/Family";
+
 
 export const createApplicant = async (req: Request, res: Response) => {
   try {
-    const {
-      full_name,
-      email,
-      mobile_phone,
-      street_address,
-      apartment_num,
-      city,
-      state,
-      zip_code,
-      applicant_age,
-      gender,
-      race,
-      household_structure,
-      num_adults,
-      num_children,
-      num_children_special_needs,
-      contact_method,
-      gifts,
-      future_prog_interest,
-      referral_source,
-      comments,
-      adoption_status,
-    } = req.body;
+    const { name, email, family } = req.body;
 
-    const photoId = req.files?.photo_id as fileUpload.UploadedFile;
-    const publicAssistance = req.files?.public_assistance as fileUpload.UploadedFile;
+    if (!name || !email || !family) {
+      return res
+        .status(400)
+        .json({ message: "Need name, email, and family data" });
+    }
 
+    // Check if applicant already exists
+    const existing = await Applicant.findOne({ email });
+    if (existing) {
+      return res.status(400).json({ message: "Applicant already exists" });
+    }
+
+    // Create the family document first
+    const newFamily = new Family(family);
+    await newFamily.save();
+
+    // Then create the applicant referencing that family
     const applicant = new Applicant({
-      submit_timestamp: new Date(),
-      full_name,
+      name,
       email,
-      mobile_phone,
-      street_address,
-      apartment_num,
-      city,
-      state,
-      zip_code,
-      applicant_age,
-      gender,
-      race,
-      household_structure,
-      num_adults,
-      num_children,
-      num_children_special_needs,
-      contact_method,
-      gifts: Array.isArray(gifts) ? gifts : [gifts],
-      future_prog_interest,
-      referral_source,
-      comments,
-      photo_id: photoId?.name || null,
-      public_assistance: publicAssistance?.name || null,
-
-      adoption_status: adoption_status || "up_for_adoption",
+      family: newFamily._id,
     });
 
     await applicant.save();
-    res.status(201).json({ message: "Applicant created successfully", applicant });
-  } catch (error) {
+
+    res.status(201).json({
+      message: "Applicant and Family created successfully",
+      applicant,
+    });
+  } catch (error: any) {
     console.error(error);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ message: "Server error" });
   }
 };
 
-//get all the applicants 
+
 export const getApplicants = async (req: Request, res: Response) => {
   try {
-    const applicants = await Applicant.find();
+    // Populate the family reference
+    const applicants = await Applicant.find().populate("family");
     res.status(200).json(applicants);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ message: "Server error" });
   }
 };
-//get applicant by id
+
+
 export const getApplicantById = async (req: Request, res: Response) => {
   try {
-    const applicant = await Applicant.findById(req.params.id);
+    const { id } = req.params;
+    const applicant = await Applicant.findById(id).populate("family");
     if (!applicant) {
-      return res.status(404).json({ error: "Applicant not found" });
+      return res.status(404).json({ message: "Applicant not found" });
     }
     res.status(200).json(applicant);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ message: "Server error" });
   }
 };
-
-
-
