@@ -1,50 +1,9 @@
 import AdoptionProcess from "../../../components/AdoptionProcess";
-import ProductCard from "../../../components/ProductCard";
 import Accordion from "../../../components/Accordion";
-import FamilyCard from "../../../components/FamilyCard";
-import headerImg from "../../../assets/images/applicant-imgs/trees-bg-header-applicants.webp"
+import headerImg from "../../../assets/images/applicant-imgs/trees-bg-header-applicants.webp";
+import FamilyList from "../../../components/FamilyList";
 
 export default function Donors() {
-  // Example placeholder data
-  const products = [
-    { productId: "001D", title: "Walmart Charitable Gift Card", price: 20.00, soldOut: false },
-    { productId: "title", title: "Kindle 8 Plus Tablet", price: 120.00, soldOut: false },
-  ];
-
-  const families = [
-    {
-      id: 1,
-      background:
-        "A single parent household with two children, working part-time while attending school.",
-      household_size: 3,
-      head_of_household: {
-        age: 35,
-        sex: "Female",
-        clothing_size: "M",
-        shoe_size: "8",
-        wish_list: "Warm coat, grocery gift card",
-      },
-      members: [
-        {
-          role: "Child",
-          age: 10,
-          sex: "Male",
-          clothing_size: "S",
-          shoe_size: "4",
-          wish_list: "Lego set, books, sneakers",
-        },
-        {
-          role: "Child",
-          age: 7,
-          sex: "Female",
-          clothing_size: "XS",
-          shoe_size: "2",
-          wish_list: "Art supplies, dolls, jacket",
-        },
-      ],
-    },
-  ];
-
   return (
     <>
       {/* Header */}
@@ -76,32 +35,13 @@ export default function Donors() {
           <AdoptionProcess />
         </section>
 
-        {/* Products Section */}
-        <section className="container mx-auto my-8 px-4">
-          <h3 className="text-xl font-semibold mb-4">Featured Products</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => (
-              <ProductCard
-                key={product.productId}
-                productId={product.productId}
-                title={product.title}
-              />
-            ))}
-          </div>
-        </section>
-
         {/* Families Section */}
-        <section className="container mx-auto my-10 px-4">
-          <h3 className="text-xl font-semibold mb-4">Available Families</h3>
-          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            {families.map((family) => (
-              <FamilyCard
-                key={family.id}
-                familyId={`NJ-2024-00${family.id}`}
-                background={family.background}
-                adopted={false}
-              />
-            ))}
+        <section className="container mx-auto bg-white card shadow-xl mb-5 pt-2 pb-8 rounded-lg border-4 border-red-900">
+          <h3 className="mt-15 mb-10 text-center text-2xl font-semibold">
+            Available Families
+          </h3>
+          <div className="flex justify-center">
+            <FamilyList />
           </div>
         </section>
 
@@ -132,8 +72,8 @@ export default function Donors() {
 
             <Accordion number={3} question="Do I pay any money today?">
               No. Checkout registers your <strong>pledge</strong>. You spend
-              funds when you <strong>purchase and ship</strong> the items or gift
-              cards from the family's wish list.
+              funds when you <strong>purchase and ship</strong> the items or
+              gift cards from the family's wish list.
             </Accordion>
 
             <Accordion
@@ -149,24 +89,24 @@ export default function Donors() {
         </section>
       </main>
       {/* Footer */}
-        <footer className="w-full mx-auto px-4 py-4 text-sm text-gray-700 flex justify-evenly">
-          <p>
-            © 2017–2025 Company, Inc. ·{" "}
-            <a href="#" className="text-blue-600 hover:underline">
-              Privacy
-            </a>{" "}
-            ·{" "}
-            <a href="#" className="text-blue-600 hover:underline">
-              Terms
-            </a>
-          </p>
+      <footer className="w-full mx-auto px-4 py-4 text-sm text-gray-700 flex justify-evenly">
+        <p>
+          © 2017–2025 Company, Inc. ·{" "}
+          <a href="#" className="text-blue-600 hover:underline">
+            Privacy
+          </a>{" "}
+          ·{" "}
+          <a href="#" className="text-blue-600 hover:underline">
+            Terms
+          </a>
+        </p>
 
-          <p className="text-right">
-            <a href="#" className="text-blue-600 hover:underline">
-              Back to top
-            </a>
-          </p>
-        </footer>
+        <p className="text-right">
+          <a href="#" className="text-blue-600 hover:underline">
+            Back to top
+          </a>
+        </p>
+      </footer>
     </>
   );
 }

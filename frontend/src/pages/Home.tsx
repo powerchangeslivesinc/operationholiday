@@ -1,11 +1,10 @@
 import ProductCard from "../components/ProductCard";
 import { Link } from "react-router-dom";
-import headerImg from "../assets/images/home-imgs/header.png"
-import bgImg from "../assets/images/home-imgs/bg.png"
-
+import headerImg from "../assets/images/home-imgs/header.png";
+import bgImg from "../assets/images/home-imgs/bg.png";
+import FamilyList from "../components/FamilyList";
 
 export default function Home() {
-
   return (
     <>
       <div
@@ -213,8 +212,7 @@ export default function Home() {
               Adoptions
             </h1>
             <div className="flex gap-5 justify-center">
-              <ProductCard productId={"2"} title={"PPP"} />
-              <ProductCard productId={"2"} title={"PPP"} />
+              <FamilyList limit={3}/>
             </div>
           </section>
 
@@ -229,8 +227,6 @@ export default function Home() {
               <ProductCard productId={"2"} title={"PPP"} />
             </div>
           </section>
-
-          
         </div>
       </div>
     </>
